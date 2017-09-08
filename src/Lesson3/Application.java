@@ -2,7 +2,7 @@ package Lesson3;
 
 import java.util.Arrays;
 
-public class Main {
+public class Application {
     public static void main(String[] args) {
 
         Car car = new Car(1002, 140, "Ford");
@@ -30,10 +30,7 @@ public class Main {
                 new Post("title1", "text tetetetet", "2017-09-07 12:15:13"),
                 new Post("title2", "text tetetetet", "2017-09-07 12:15:20"),
                 new Post("title3", "text tetetetet", "2017-09-07 12:15:01"),
-                new Post("title4", "text tetetetet", "2017-09-07 12:15:35"),
-                new Post("title5", "text tetetetet", "2017-09-07 12:15:54"),
-                new Post("title6", "text tetetetet", "2017-09-07 12:15:02"),
-                new Post("title7", "text tetetetet", "2017-09-07 12:15:15")
+                new Post("title4", "text tetetetet", "2017-09-07 12:15:35")
         };
 
 //        Post[] posts = {new Post("title1", "text tetetetet"),
@@ -45,7 +42,6 @@ public class Main {
 //                new Post("title6", "text tetetetet"),
 //                new Post("title7", "text tetetetet")
 //        };
-
         // Printing the initial IDs order
         for (Post post : posts) {
             System.out.println(post.getPostId());

@@ -25,10 +25,11 @@ public class Post {
 
     // Constructor for manual date assignment, the format is yyyy-MM-dd HH:mm:ss
 
-    public Post(String title, String text, String postedAt) {
+        public Post(String title, String text, String postedAt) {
 
         this.postId = ThreadLocalRandom.current().nextLong(1, Long.MAX_VALUE); // Generating a positive long
         this.title = title;
+//        this.postId = postId;
         this.text = text;
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -39,16 +40,23 @@ public class Post {
         }
     }
 
+//    public static Post createInstance(long postId, String title, String text, String postedAt) {
+//        if (postId < 0) {
+//            return null;
+//        }
+//        return new Post(title, text, postedAt);
+//    }
+
     // Bubble sorting by ID lowest to highest
 
     public static Post[] sortByPostId(Post[] posts) {
 
-        for (int a = 1; a < posts.length; a++) {
-            for (int b = posts.length - 1; b >= a; b--) {
-                if (posts[b].postId < posts[b - 1].postId) {
-                    Post t = posts[b - 1];
-                    posts[b - 1] = posts[b];
-                    posts[b] = t;
+        for (int i = 0; i < posts.length; i++) {
+            for (int j = i + 1; j < posts.length; j++) {
+                if (posts[i].postId > posts[j].postId) {
+                    Post temp = posts[i];
+                    posts[i] = posts[j];
+                    posts[j] = temp;
                 }
             }
         }
@@ -60,16 +68,15 @@ public class Post {
 
     public static Post[] sortByPostedAt(Post[] posts) {
 
-        for (int a = 1; a < posts.length; a++) {
-            for (int b = posts.length - 1; b >= a; b--) {
-                if (posts[b].postedAt.compareTo(posts[b - 1].postedAt) < 0) {
-                    Date t = posts[b - 1].postedAt;
-                    posts[b - 1].postedAt = posts[b].postedAt;
-                    posts[b].postedAt = t;
+        for (int i = 0; i < posts.length; i++) {
+            for (int j = i + 1; j < posts.length; j++) {
+                if (posts[i].postedAt.compareTo(posts[j].postedAt) > 0) {
+                    Post temp = posts[i];
+                    posts[i] = posts[j];
+                    posts[j] = temp;
                 }
             }
         }
-
         return posts;
     }
 
