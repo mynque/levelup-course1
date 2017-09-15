@@ -24,46 +24,48 @@ public class App {
 
         Scanner sc = new Scanner(System.in);
 
+        System.out.println();
         System.out.println("1. Show all my posts");
         System.out.println("2. Write a private message");
         System.out.println("3. Leave a comment to a post");
         System.out.println("4. Exit");
+        System.out.println("Your choice:");
 
-
+        int choice = 0;
 
         if (!sc.hasNextInt()) {
-            System.out.println("Please enter a number from 1 to 4:");
+            System.out.println("\nPlease enter a number from 1 to 4.");
+            sc.next();
             menu();
-        }
-
-        int choice = sc.nextInt();
-
-        if (choice < 1 || choice > 4) {
-            System.out.println("Please enter a number from 1 to 4:");
-            menu();
+        } else {
+            choice = sc.nextInt();
+            if (choice < 1 || choice > 4) {
+                System.out.println("\nPlease enter a number from 1 to 4.");
+                menu();
+            }
         }
 
         return choice;
     }
 
     private static void authenticate() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         System.out.println("Please enter your email:");
-        String email = scanner.nextLine();
+        String email = sc.nextLine();
 
         if (!User.isValidEmailAddress(email)) {
-            System.out.println("The email is not valid");
+            System.out.println("\nThe email is not valid.");
             menu();
         }
 
-        System.out.println("Please enter your password:");
-        int passwordHash = Objects.hash(scanner.nextLine());
+        System.out.println("\nPlease enter your password:");
+        int passwordHash = Objects.hash(sc.nextLine());
 
         if (UserStorage.authenticate(email, passwordHash)) {
             isAuthenticated = true;
         } else {
-            System.out.println("Your credentials are wrong.");
+            System.out.println("\nInvalid credentials.");
             menu();
         }
     }

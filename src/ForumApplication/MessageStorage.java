@@ -2,11 +2,7 @@ package ForumApplication;
 
 public class MessageStorage {
 
-    private static Message[] messages;
-
-    static {
-        messages = new Message[0];
-    }
+    private static Message[] messages = new Message[0];
 
     public static void add(Message message) {
         // Keep the current state in prevMessages

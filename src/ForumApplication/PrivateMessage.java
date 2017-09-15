@@ -11,23 +11,38 @@ public class PrivateMessage extends Message {
         this.recipient = recipient;
     }
 
+//    @Override
+//    public boolean equals(Object object) {
+//        if (this == object) return true;
+//        if (!(object instanceof PrivateMessage)) return false;
+//
+//        PrivateMessage other = (PrivateMessage) object;
+//        return
+//                getMessageId() == other.getMessageId()
+//                && getText().equals(other.getText())
+//                && getAuthor().equals(other.getAuthor())
+//                && getDate().equals(other.getDate())
+//                && recipient.equals(other.recipient);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(getMessageId(), getText(), getAuthor(), getDate(), recipient);
+//    }
+
+
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
+        if (!super.equals(object)) return false;
         if (!(object instanceof PrivateMessage)) return false;
 
         PrivateMessage other = (PrivateMessage) object;
-        return
-                getMessageId() == other.getMessageId()
-                && getText().equals(other.getText())
-                && getAuthor().equals(other.getAuthor())
-                && getDate().equals(other.getDate())
-                && recipient.equals(other.recipient);
+        return recipient.equals(other.recipient);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMessageId(), getText(), getAuthor(), getDate(), recipient);
+        return Objects.hash(super.hashCode(), recipient);
     }
 
     public void send() {

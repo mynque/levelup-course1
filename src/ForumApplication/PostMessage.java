@@ -19,21 +19,15 @@ public class PostMessage extends Message {
 
     @Override
     public boolean equals(Object object) {
-        if (this == object) return true;
+        if (!super.equals(object)) return false;
         if (!(object instanceof PostMessage)) return false;
 
         PostMessage other = (PostMessage) object;
-
-        return
-                getMessageId() == other.getMessageId()
-                        && getText().equals(other.getText())
-                        && getAuthor().equals(other.getAuthor())
-                        && getDate().equals(other.getDate())
-                        && post.equals(other.post);
+        return post.equals(other.post);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getMessageId(), getText(), getAuthor(), getDate(), post);
+        return Objects.hash(super.hashCode(), post);
     }
 }

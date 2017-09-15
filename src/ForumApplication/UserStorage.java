@@ -4,11 +4,7 @@ import java.util.Arrays;
 
 public class UserStorage {
 
-    private static User[] users;
-    
-    static {
-        users = new User[0];
-    }
+    private static User[] users = new User[0];
     
     public static void add(User user) {
 
