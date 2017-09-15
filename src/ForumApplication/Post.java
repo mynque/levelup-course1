@@ -1,42 +1,64 @@
-package Lesson3;
+package ForumApplication;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Post {
 
     private long postId;
+    private User author;
     private String title;
     private String text;
-    private Date postedAt;
+    private Date date;
 
 
     // Constructor for automatic date assignment
 
-    public Post(String title, String text) {
-
+    public Post(User author, String title, String text) {
         this.postId = ThreadLocalRandom.current().nextLong(0, Long.MAX_VALUE);
+        this.author = author;
         this.title = title;
         this.text = text;
-        this.postedAt = new Date();
+        this.date = new Date();
     }
 
     // Constructor for manual date assignment, the format is yyyy-MM-dd HH:mm:ss
 
-    public Post(String title, String text, String postedAt) {
-
+    public Post(User author, String title, String text, String date) {
         this.postId = ThreadLocalRandom.current().nextLong(1, Long.MAX_VALUE); // Generating a positive long
+        this.author = author;
         this.title = title;
         this.text = text;
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-            this.postedAt = format.parse(postedAt);
+            this.date = format.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean equals(Object post) {
+        if (this == post) return true;
+        if (!(post instanceof Post)) return false;
+
+        Post other = (Post) post;
+
+        return
+                postId == other.postId
+                && author.equals(other.author)
+                && title.equals(other.title)
+                && text.equals(other.text)
+                && date.equals(other.date);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(postId, author, title, text, date);
     }
 
     // Bubble sorting by ID lowest to highest
@@ -62,10 +84,10 @@ public class Post {
 
         for (int a = 1; a < posts.length; a++) {
             for (int b = posts.length - 1; b >= a; b--) {
-                if (posts[b].postedAt.compareTo(posts[b - 1].postedAt) < 0) {
-                    Date t = posts[b - 1].postedAt;
-                    posts[b - 1].postedAt = posts[b].postedAt;
-                    posts[b].postedAt = t;
+                if (posts[b].date.compareTo(posts[b - 1].date) < 0) {
+                    Date t = posts[b - 1].date;
+                    posts[b - 1].date = posts[b].date;
+                    posts[b].date = t;
                 }
             }
         }
@@ -97,11 +119,11 @@ public class Post {
         this.text = text;
     }
 
-    public Date getPostedAt() {
-        return postedAt;
+    public Date getDate() {
+        return date;
     }
 
-    public void setPostedAt(Date postedAt) {
-        this.postedAt = postedAt;
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
