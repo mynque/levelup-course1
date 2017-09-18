@@ -26,10 +26,10 @@ public abstract class Message {
 
         Message other = (Message) object;
         return
-                messageId == other.messageId
-                && text.equals(other.text)
-                && author.equals(other.author)
-                && date.equals(other.date);
+                Objects.equals(messageId, other.messageId)
+                && Objects.equals(text, other.text)
+                && Objects.equals(author, other.author)
+                && Objects.equals(date, other.date);
     }
     
     @Override

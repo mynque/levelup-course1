@@ -49,7 +49,7 @@ public class Post {
         Post other = (Post) post;
 
         return
-                postId == other.postId
+                Objects.equals(postId, other.postId)
                 && author.equals(other.author)
                 && title.equals(other.title)
                 && text.equals(other.text)

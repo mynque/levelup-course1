@@ -30,6 +30,16 @@ public class DynamicArrayCustomList<T> implements CustomList<T> {
 
     @Override
     public void delete(int index) {
+        if (size < index + 1) {
+            System.out.println("No such an index");
+            return;
+        }
+        System.arraycopy(array, index + 1, array, index, size - (index + 1));
+        array[size - 1] = null;
+        size--;
+    }
 
+    public Object[] getArray() {
+        return array;
     }
 }

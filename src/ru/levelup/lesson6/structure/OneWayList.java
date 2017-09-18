@@ -4,12 +4,10 @@ public class OneWayList<T> implements CustomList<T> {
 
     private Element head;
 
-    private Element tail;
-
     private class Element {
         Element next;
-        Element prev;
         T value;
+
         Element(T value) {
             this.value = value;
         }
@@ -20,21 +18,67 @@ public class OneWayList<T> implements CustomList<T> {
         Element element = new Element(value);
         if (head == null) {
             head = element;
-            tail = element;
         } else {
-//            Element current = head;
-//            while (current.next != null) {
-//                current = current.next;
-//            }
-//            current.next = element;
-            tail.next = element;
-            element.prev = tail;
-            tail = element;
+            Element current = head;
+            while (current.next != null) {
+                current = current.next;
+            }
+            current.next = element;
         }
     }
 
     @Override
     public void delete(int index) {
+        if (head == null) {
+            System.out.println("The list is empty!");
+        } else {
 
+            Element current = head;
+            Element prev = null;
+            int counter = 0;
+
+            // Counting elements up to index
+            while (counter < index && current.next != null) {
+                prev = current;
+                current = current.next;
+                counter++;
+            }
+
+            // If there are less element than index, show an error
+            if (counter < index) {
+                System.out.println("No such an index");
+                return;
+            }
+
+            // If it's the first element
+            if (counter == 0 && index == 0) {
+                // And it's the only element, reset head
+                if (current.next == null) {
+                    head = null;
+                    return;
+                } else {
+                    // If there's a following element, set head to it
+                    head = head.next;
+                    return;
+                }
+            }
+
+            // If it's the last element, set previous.next to null
+            if (current.next == null) {
+                prev.next = null;
+            } else {
+                // Else, set to the next element
+                prev.next = current.next;
+            }
+        }
+    }
+
+    public void printOut() {
+        Element current = head;
+        do {
+            System.out.println(current.value);
+            current = current.next;
+        }
+        while (current != null);
     }
 }

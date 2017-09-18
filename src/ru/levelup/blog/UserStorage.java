@@ -1,26 +1,13 @@
 package ru.levelup.blog;
 
+import java.util.ArrayList;
+
 public class UserStorage {
 
-    private static User[] users = new User[0];
-    
+    private static ArrayList<User> users = new ArrayList<>();
+
     public static void add(User user) {
-
-        // Keep the current state in prevUsers
-        User[] prevUsers = users;
-
-        // Initialize a new array having one more element
-        User[] newUsers = new User[prevUsers.length + 1];
-
-        // Copy previous users into the newly defined array
-        for (int i = 0; i < prevUsers.length; i++) {
-            newUsers[i] = prevUsers[i];
-        }
-
-        // Set the method parameter as a value for the last element
-        newUsers[newUsers.length - 1] = user;
-
-        users = newUsers;
+        users.add(user);
     }
 
     public static boolean authenticate(String email, int passwordHash) {
@@ -31,7 +18,7 @@ public class UserStorage {
         return isUser;
     }
 
-    public static User[] getUsers() {
+    public static ArrayList<User> getUsers() {
         return users;
     }
 }
