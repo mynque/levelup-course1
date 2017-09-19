@@ -29,6 +29,10 @@ public class OneWayList<T> implements CustomList<T> {
 
     @Override
     public void delete(int index) {
+        if (index < 0) {
+            System.out.println("Index should be >= 0");
+            return;
+        }
         if (head == null) {
             System.out.println("The list is empty!");
         } else {
@@ -67,7 +71,7 @@ public class OneWayList<T> implements CustomList<T> {
             if (current.next == null) {
                 prev.next = null;
             } else {
-                // Else, set to the next element
+                // If it's an element in between, set prev.next to prev.next.next
                 prev.next = current.next;
             }
         }

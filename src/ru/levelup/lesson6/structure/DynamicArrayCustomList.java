@@ -30,6 +30,10 @@ public class DynamicArrayCustomList<T> implements CustomList<T> {
 
     @Override
     public void delete(int index) {
+        if (index < 0) {
+            System.out.println("Index should be >= 0");
+            return;
+        }
         if (size < index + 1) {
             System.out.println("No such an index");
             return;
@@ -39,7 +43,11 @@ public class DynamicArrayCustomList<T> implements CustomList<T> {
         size--;
     }
 
-    public Object[] getArray() {
-        return array;
+    @Override
+    public void printOut() {
+        for (Object element : array) {
+            if (element == null) return;
+            System.out.println(element.toString());
+        }
     }
 }

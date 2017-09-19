@@ -6,4 +6,6 @@ public interface CustomList<T> {
 
     void delete(int index);
 
+    void printOut();
+
 }

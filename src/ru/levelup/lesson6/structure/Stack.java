@@ -19,6 +19,6 @@ public class Stack<T> extends LinkedList<T> {
         }
 
         tail.prev.next = null;
-        tail = null;
+        tail = tail.prev;
     }
 }
