@@ -1,18 +1,18 @@
 package ru.levelup.lesson6.structure;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-        DynamicArrayCustomList<String> list = new DynamicArrayCustomList<>(5);
-        list.add("1");
-        list.add("2");
-        list.add("3");
-        list.add("4");
-
-        list.delete(3);
-
-        list.printOut();
+//        DynamicArrayCustomList<String> list = new DynamicArrayCustomList<>(5);
+//        list.add("1");
+//        list.add("2");
+//        list.add("3");
+//        list.add("4");
+//
+//        list.delete(3);
+//
+//        list.printOut();
 
 
 //        OneWayList<String> aList = new OneWayList<>();
@@ -20,7 +20,7 @@ public class App {
 //        aList.add("2");
 //        aList.add("3");
 //
-//        aList.delete(2);
+//        aList.delete(0);
 //
 //        aList.printOut();
 
@@ -43,6 +43,52 @@ public class App {
 //        stack.pop();
 //
 //        stack.printOut();
+
+//        Map<Key, Integer> map = new LinkedHashMap<>();
+//        map.put(new Key("one"),      1);
+//        map.put(new Key("two"),      2);
+//        map.put(new Key("three"),    3);
+//        map.put(new Key("four"),     4);
+
+//        System.out.println(map.get(new Key("four")));
+//        System.out.println(map.get(new Key("two")));
+//        System.out.println(map.get(new Key("two")));
+//        System.out.println(map.get(new Key("two")));
+//        System.out.println(map.get(new Key("one")));
+
+//        for (Key key: map.keySet()) {
+//            System.out.println("Key = " + key.s + ", value = " + map.get(key));
+//        }
+
+        Set<String> strings = new HashSet<>();
+
+        System.out.println(strings.add("s1"));
+        System.out.println(strings.add("s2"));
+        System.out.println(strings.add("s3"));
+        System.out.println(strings.add("s4"));
+        System.out.println(strings.add("s4"));
+        System.out.println(strings.add("s3"));
+        System.out.println(strings.add("s2"));
+        System.out.println(strings.size());
+
+    }
+
+    static class Key {
+        String s;
+        public Key(String s) {
+            this.s = s;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            Key other = (Key) obj;
+            return Objects.equals(s, other.s);
+        }
+
+        @Override
+        public int hashCode() {
+            return s.hashCode();
+        }
 
     }
 }

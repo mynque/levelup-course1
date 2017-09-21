@@ -1,8 +1,9 @@
 package ru.levelup.lesson6.structure;
 
-public class OneWayList<T> implements CustomList<T> {
+public class OneWayList2<T> implements CustomList<T> {
 
     private Element head;
+    private int size;
 
     private class Element {
         Element next;
@@ -25,42 +26,31 @@ public class OneWayList<T> implements CustomList<T> {
             }
             current.next = element;
         }
+        size++;
     }
 
     @Override
     public void delete(int index) {
-        if (index < 0) {
-            System.out.println("Index should be >= 0");
-            return;
+        if (index < 0 || index >= size) {
+            throw new IllegalArgumentException("Index must be positive " +
+                    "and less than size.");
         }
-
-        if (head == null) {
-            System.out.println("The list is empty!");
-            return;
-        }
+        int currentIndex = 0;
+        Element current = head;
+        Element prev = null;
 
         if (index == 0) {
             head = head.next;
         } else {
-
-            Element current = head;
-            Element prev = null;
-            int counter = 0;
-
-            // Counting elements up to index
-            while (counter < index && current.next != null) {
+            while (currentIndex != index) {
                 prev = current;
                 current = current.next;
-                counter++;
+                currentIndex++;
             }
 
-            // If there are less element than index, show an error
-            if (counter < index) {
-                System.out.println("No such an index");
-                return;
-            }
             prev.next = current.next;
         }
+        size--;
     }
 
     public void printOut() {

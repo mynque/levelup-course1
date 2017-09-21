@@ -34,7 +34,7 @@ public class DynamicArrayCustomList<T> implements CustomList<T> {
             System.out.println("Index should be >= 0");
             return;
         }
-        if (size < index + 1) {
+        if (index >= size) {
             System.out.println("No such an index");
             return;
         }
