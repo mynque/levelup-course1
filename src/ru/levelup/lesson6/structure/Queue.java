@@ -7,10 +7,8 @@ public class Queue<T> extends LinkedList<T> {
     }
 
     public void dequeue() {
-        if (head == null) {
-            System.out.println("Empty queue");
-            return;
-        }
+        if (head == null) throw new EmptyQueueException("The queue is empty!");
+
         if (head == tail) {
             head = null;
             tail = null;
